@@ -1,32 +1,35 @@
 #include<iostream>
-#include<iomanip>
-using namespace std;
 
-void plotas(double spind, double &PT, double pi){ //sioje funkcijoje apskaciuojamas apskritimo plotas
-    PT=pi*spind*spind;
+void skaiciuok(int &nul, int sk)
+{
+    int k;
+     while(sk>0){
+         k=sk%10;
+         if(k!=0){nul=1;}
+         else {nul=0; break;}
+         sk=sk/10;
+        }
 }
 
-void ilgis(double spind, double &IL, double pi){ //sioje funkcijoje apskaiciuojamas apskritimo ilgis
-    IL=2*pi*spind;
-}
+int main()
+{
+    int n, A, B;
+    std::cout<<"Tai programa, kuri randa pirmaja skaiciu suma, kuriuose nera nuliu"<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<"Iveskite teigiama skaiciu:";
+    std::cin>>n;
+    B=n-1;
 
-int main(){ //pagrindine funkcija
-    cout<<"Tai programa, kuri apskaiciuoja apskritimo ilgi ir plota ivedus apskritimo spinduli"<<endl;
-    cout<<endl;
+    int nulA, nulB;
+    for(int i=1; i<=B; i++){
+        A=i;
 
-    double pi=3.14159;
-    double spind, PT, IL; //spind-spindulys; PT-plotas; IL-ilgis
-    cout<<"Iveskite apskritimo spinduli: ";
-    cin>>spind;
-    cout<<endl;
 
-    plotas(spind, PT, pi); //kreipiamasi i funkcijas "plotas" ir "ilgis", kad apskaiciuotu reikiamus duomenys
-    ilgis(spind, IL, pi);
-
-    cout<<"Pagal formule: PI*spindulys*spindulys, apskaiciuotas apskritimo plotas gavosi: "<<setprecision(2)<<fixed<<PT<<endl;
-    cout<<"Pagal formule: 2*PI*spindulys, apskaiciuotas apskritimo ilgis gavosi:"<<setprecision(2)<<fixed<<IL<<endl;
-
-    //setprecision,kuris buvo panaudotas 26 ir 27 eiluteje, leidzia nustatyti kiek skaiciu reikia palikti po kableliu, o fixed parodo skaicius aiskiu pavidalu
-
+        skaiciuok(nulA, A);
+        skaiciuok(nulB, B);
+        if(nulA==1 && nulB==1){break;}
+        else{B=B-1; continue;}
+    }
+    std::cout<<"Atsakymas: ["<<A<<";"<<B<<"]";
     return 0;
 }
